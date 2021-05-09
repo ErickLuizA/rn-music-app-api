@@ -4,12 +4,12 @@ import { HttpRequest, HttpResponse } from '../protocols/http'
 import { Middleware } from '../protocols/middleware'
 
 export class AuthMiddleware implements Middleware {
-  constructor(private readonly userRepository: IUserRepository) {}
+  constructor (private readonly userRepository: IUserRepository) {}
 
-  async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
+  async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     const { authorization } = httpRequest.headers
 
-    if (!authorization) {
+    if (authorization === undefined) {
       return forbidden(new Error('Authorization is required'))
     }
 
@@ -18,7 +18,7 @@ export class AuthMiddleware implements Middleware {
     try {
       const user = await this.userRepository.loadUserByToken(token)
 
-      if (user) {
+      if (user !== undefined) {
         return ok(user.id)
       } else {
         return forbidden(new Error('Invalid token'))

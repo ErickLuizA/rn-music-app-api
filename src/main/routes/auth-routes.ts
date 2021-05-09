@@ -4,6 +4,6 @@ import { makeAuthenticationController } from '../factories/controllers/Auth/Auth
 import { makeCreateUserController } from '../factories/controllers/Auth/CreateUserControllerFactory'
 
 export default (router: Router): void => {
-  router.post('/register', adaptRoute(makeCreateUserController()))
-  router.post('/login', adaptRoute(makeAuthenticationController()))
+  router.post('/register', adaptRoute(makeCreateUserController())) // eslint-disable-line
+  router.post('/login', adaptRoute(makeAuthenticationController())) // eslint-disable-line
 }

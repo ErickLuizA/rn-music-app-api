@@ -1,10 +1,10 @@
 import { Encrypter } from '../../../data/criptography/encrypter'
 import { IUserRepository } from '../../../data/repositories/IUserRepository'
-import { CreateUserUseCase } from '../../../domain/useCases/User/CreateUserUseCase'
+import { CreateUserParams, CreateUserUseCase } from '../../../domain/useCases/User/CreateUserUseCase'
 import {
   badRequest,
   badRequests,
-  ok,
+  noContent,
   serverError
 } from '../../helpers/http-helper'
 import { HttpRequest, HttpResponse } from '../../protocols/http'
@@ -21,7 +21,7 @@ export class CreateUserController {
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     const { name, email, password } = httpRequest.body
 
-    const data = { name, email, password }
+    const data: CreateUserParams = { name, email, password }
 
     const error = this.validator.validate(data)
 
@@ -33,17 +33,13 @@ export class CreateUserController {
     }
 
     try {
-      const user = await this.createUserUseCase.execute({
-        name,
-        email,
-        password
-      })
+      const userId = await this.createUserUseCase.execute(data)
 
-      const token = await this.encrypter.encrypt(user.id)
+      const token = await this.encrypter.encrypt(userId.toString())
 
-      await this.userRepository.updateToken(user.id, token)
+      await this.userRepository.updateToken(userId.toString(), token)
 
-      return ok({ user, token })
+      return noContent()
     } catch (error) {
       if (error.message === 'User already exists') {
         return badRequest(error)

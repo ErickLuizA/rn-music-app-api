@@ -1,5 +1,4 @@
-import { AuthenticationModel } from '../../../domain/models/Authentication'
-import { AuthenticationParams, AuthenticationUseCase } from '../../../domain/useCases/User/AuthenticationUseCase'
+import { AuthenticationModel, AuthenticationParams, AuthenticationUseCase } from '../../../domain/useCases/User/AuthenticationUseCase'
 import { Encrypter } from '../../criptography/encrypter'
 import { HashComparer } from '../../criptography/hash-comparer'
 import { IUserRepository } from '../../repositories/IUserRepository'
@@ -11,10 +10,10 @@ export class AuthenticationUseCaseImpl implements AuthenticationUseCase {
     private readonly encrypter: Encrypter
   ) {}
 
-  async execute (authenticationParams: AuthenticationParams): Promise<AuthenticationModel | Error> {
+  async execute (authenticationParams: AuthenticationParams): Promise<AuthenticationModel> {
     const user = await this.userRepository.loadByEmail(authenticationParams.email)
 
-    if (user) {
+    if (user !== undefined) {
       const isValid = await this.hashComparer.compare(authenticationParams.password, user.password)
 
       if (isValid) {

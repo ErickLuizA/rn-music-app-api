@@ -1,6 +1,8 @@
 import dotenv from 'dotenv'
-import express, { urlencoded, json } from 'express'
 import cors from 'cors'
+
+import express, { urlencoded, json } from 'express'
+
 import setupRoutes from './routes'
 
 dotenv.config()

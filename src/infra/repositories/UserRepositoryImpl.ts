@@ -1,10 +1,11 @@
-import { UserModel } from '../../domain/models/User'
 import database from '../query-builder/knex/connection'
+import { UserModel } from '../../domain/models/User'
 import { IUserRepository } from '../../data/repositories/IUserRepository'
+import { CreateUserParams } from '../../domain/useCases/User/CreateUserUseCase'
 
 export class UserRepositoryImpl implements IUserRepository {
-  async create (params: Pick<UserModel, 'name' | 'email' | 'password'>): Promise<UserModel> {
-    const res = await database('users').insert(params).returning('*') as any
+  async create (params: CreateUserParams): Promise<number> {
+    const res = await database('users').insert(params)
 
     return res[0]
   }

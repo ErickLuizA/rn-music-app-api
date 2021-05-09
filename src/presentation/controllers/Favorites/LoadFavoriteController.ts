@@ -11,7 +11,7 @@ export class LoadFavoriteController {
     const userId = httpRequest.userId
 
     try {
-      const favorites = await this.loadFavoritesUseCase.execute(userId!)
+      const favorites = await this.loadFavoritesUseCase.execute(userId ?? '')
 
       return ok(favorites)
     } catch (error) {

@@ -6,7 +6,7 @@ import { makeLoadFavoriteControllerFactory } from '../factories/controllers/Favo
 import { auth } from '../middlewares/auth'
 
 export default (router: Router): void => {
-  router.post('/favorite', auth, adaptRoute(makeCreateFavoriteControllerFactory()))
-  router.get('/favorites', auth, adaptRoute(makeLoadFavoriteControllerFactory()))
-  router.delete('/favorite/:id', auth, adaptRoute(makeDeleteFavoriteControllerFactory()))
+  router.post('/favorite', auth, adaptRoute(makeCreateFavoriteControllerFactory())) // eslint-disable-line
+  router.get('/favorites', auth, adaptRoute(makeLoadFavoriteControllerFactory()))  // eslint-disable-line
+  router.delete('/favorite/:id', auth, adaptRoute(makeDeleteFavoriteControllerFactory()))  // eslint-disable-line
 }

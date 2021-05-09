@@ -10,7 +10,7 @@ export class CreateFavoriteUseCaseImpl implements CreateFavoriteUseCase {
   async execute (createFavoriteParams: CreateFavoriteParams): Promise<FavoriteMusicModel> {
     const alreadyExists = await this.favoriteRepository.load(createFavoriteParams.userId, createFavoriteParams.musicId)
 
-    if (alreadyExists) {
+    if (alreadyExists !== undefined) {
       throw new Error('Favorite already exists')
     }
 

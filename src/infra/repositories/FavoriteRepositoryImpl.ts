@@ -16,7 +16,7 @@ export class FavoriteRepositoryImpl implements IFavoriteRepository {
     return await database('favorites').where('userId', userId)
   }
 
-  async delete (favoriteId: string, userId: string): Promise<number> {
+  async delete (favoriteId: string, userId: string): Promise<void> {
     return await database('favorites').where({ favoriteId, userId }).delete()
   }
 }

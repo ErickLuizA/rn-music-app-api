@@ -1,4 +1,4 @@
-import { AuthenticationUseCase } from '../../../domain/useCases/User/AuthenticationUseCase'
+import { AuthenticationParams, AuthenticationUseCase } from '../../../domain/useCases/User/AuthenticationUseCase'
 import { Validator } from '../../../validation/Validator'
 import { badRequest, badRequests, forbidden, ok, serverError } from '../../helpers/http-helper'
 import { HttpRequest, HttpResponse } from '../../protocols/http'
@@ -12,10 +12,7 @@ export class AuthenticationController {
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     const { email, password } = httpRequest.body
 
-    const data = {
-      email,
-      password
-    }
+    const data: AuthenticationParams = { email, password }
 
     const error = this.validator.validate(data)
 

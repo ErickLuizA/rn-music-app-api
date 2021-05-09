@@ -6,13 +6,11 @@ export class DeleteFavoriteUseCaseImpl implements DeleteFavoriteUseCase {
     private readonly favoriteRepository: IFavoriteRepository
   ) {}
 
-  async execute (favoriteId: string, userId: string): Promise<number> {
+  async execute (favoriteId: string, userId: string): Promise<void> {
     const result = await this.favoriteRepository.delete(favoriteId, userId)
 
     if (result !== 1) {
       throw new Error('Favorite does not exist')
     }
-
-    return result
   }
 }

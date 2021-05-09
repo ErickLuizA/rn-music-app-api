@@ -8,5 +8,5 @@ export interface IFavoriteRepository {
 
   loadAll: (userId: string) => Promise<FavoriteMusicModel[]>
 
-  delete: (favoriteId: string, userId: string) => Promise<number>
+  delete: (favoriteId: string, userId: string) => Promise<void>
 }

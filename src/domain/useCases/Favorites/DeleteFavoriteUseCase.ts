@@ -1,3 +1,3 @@
 export interface DeleteFavoriteUseCase {
-  execute: (favoriteId: string, userId: string) => Promise<number>
+  execute: (favoriteId: string, userId: string) => Promise<void>
 }

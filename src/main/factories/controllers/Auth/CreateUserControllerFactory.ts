@@ -15,7 +15,7 @@ export function makeCreateUserController (): CreateUserController {
   )
 
   const validator = new Validator()
-  const encrypter = new JwtAdapter(process.env.JWT_SECRET!)
+  const encrypter = new JwtAdapter(process.env.JWT_SECRET ?? '')
 
   const createUserController = new CreateUserController(
     createUserUseCaseImpl,

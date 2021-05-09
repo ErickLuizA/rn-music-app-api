@@ -1,5 +1,4 @@
-import { UserModel } from '../../../domain/models/User'
-import { CreateUserUseCase } from '../../../domain/useCases/User/CreateUserUseCase'
+import { CreateUserParams, CreateUserUseCase } from '../../../domain/useCases/User/CreateUserUseCase'
 import { Hasher } from '../../criptography/hasher'
 import { IUserRepository } from '../../repositories/IUserRepository'
 
@@ -10,8 +9,8 @@ export class CreateUserUseCaseImpl implements CreateUserUseCase {
   ) {}
 
   async execute (
-    user: Pick<UserModel, 'name' | 'avatar' | 'email' | 'password'>
-  ): Promise<UserModel> {
+    user: CreateUserParams
+  ): Promise<number> {
     const userAlreadyExists = await this.userRepository.loadByEmail(user.email)
 
     if (userAlreadyExists?.email === user.email) {

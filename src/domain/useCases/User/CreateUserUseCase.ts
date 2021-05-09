@@ -1,5 +1,3 @@
-import { UserModel } from '../../models/User'
-
 export interface CreateUserParams {
   name: string
   email: string
@@ -7,5 +5,5 @@ export interface CreateUserParams {
 }
 
 export interface CreateUserUseCase {
-  execute: (user: CreateUserParams) => Promise<UserModel>
+  execute: (user: CreateUserParams) => Promise<number>
 }

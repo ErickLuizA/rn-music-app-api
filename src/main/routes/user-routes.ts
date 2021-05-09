@@ -4,5 +4,5 @@ import { makeLoadUserControllerFactory } from '../factories/controllers/User/Loa
 import { auth } from '../middlewares/auth'
 
 export default (router: Router): void => {
-  router.get('/user', auth, adaptRoute(makeLoadUserControllerFactory()))
+  router.get('/user', auth, adaptRoute(makeLoadUserControllerFactory())) // eslint-disable-line
 }
