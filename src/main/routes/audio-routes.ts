@@ -4,5 +4,5 @@ import { makeLoadAudioController } from '../factories/controllers/Audio/LoadAudi
 import { auth } from '../middlewares/auth'
 
 export default (router: Router): void => {
-  router.get('/audio/:id', auth, adaptRoute(makeLoadAudioController()))
+  router.get('/audio/:id', auth, adaptRoute(makeLoadAudioController())) // eslint-disable-line
 }
