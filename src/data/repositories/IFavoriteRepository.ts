@@ -2,7 +2,7 @@ import { FavoriteMusicModel } from '../../domain/models/FavoriteMusic'
 import { CreateFavoriteParams } from '../../domain/useCases/Favorites/CreateFavoriteUseCase'
 
 export interface IFavoriteRepository {
-  create: (createFavoriteParams: CreateFavoriteParams) => Promise<FavoriteMusicModel>
+  create: (createFavoriteParams: CreateFavoriteParams) => Promise<void>
 
   load: (userId: string, musicId: string) => Promise<FavoriteMusicModel>
 

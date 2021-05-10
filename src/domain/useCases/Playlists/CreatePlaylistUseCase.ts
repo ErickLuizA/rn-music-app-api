@@ -1,7 +1,8 @@
-import { PlaylistModel } from '../../models/Playlist'
-
-export type CreatePlaylistParams = Omit<PlaylistModel, 'playlistId'>
+export interface CreatePlaylistParams {
+  userId: string
+  title: string
+}
 
 export interface CreatePlaylistUseCase {
-  execute: (createPlaylistParams: CreatePlaylistParams) => Promise<PlaylistModel>
+  execute: (createPlaylistParams: CreatePlaylistParams) => Promise<void>
 }

@@ -1,5 +1,4 @@
-import { PlaylistModel } from '../../../domain/models/Playlist'
-import { CreatePlaylistUseCase } from '../../../domain/useCases/Playlists/CreatePlaylistUseCase'
+import { CreatePlaylistParams, CreatePlaylistUseCase } from '../../../domain/useCases/Playlists/CreatePlaylistUseCase'
 import { IPlaylistRepository } from '../../repositories/IPlaylistRepository'
 
 export class CreatePlaylistUseCaseImpl implements CreatePlaylistUseCase {
@@ -7,15 +6,13 @@ export class CreatePlaylistUseCaseImpl implements CreatePlaylistUseCase {
     private readonly playlistRepository: IPlaylistRepository
   ) {}
 
-  async execute (createPlaylistParams: Pick<PlaylistModel, 'userId' | 'title'>): Promise<PlaylistModel> {
+  async execute (createPlaylistParams: CreatePlaylistParams): Promise<void> {
     const alreadyExists = await this.playlistRepository.load(createPlaylistParams.userId, createPlaylistParams.title)
 
-    if (alreadyExists) {
+    if (alreadyExists !== undefined) {
       throw new Error('Playlist already exists')
     }
 
-    const newPlaylist = await this.playlistRepository.create(createPlaylistParams.userId, createPlaylistParams.title)
-
-    return newPlaylist
+    await this.playlistRepository.create(createPlaylistParams)
   }
 }

@@ -1,5 +1,5 @@
-import { DeletePlaylistMusicUseCase } from '../../../domain/useCases/Playlists/DeletePlaylistMusicUseCase'
-import { ok, serverError } from '../../helpers/http-helper'
+import { DeletePlaylistMusicParams, DeletePlaylistMusicUseCase } from '../../../domain/useCases/Playlists/DeletePlaylistMusicUseCase'
+import { noContent, serverError } from '../../helpers/http-helper'
 import { HttpRequest, HttpResponse } from '../../protocols/http'
 
 export class DeletePlaylistMusicController {
@@ -10,10 +10,15 @@ export class DeletePlaylistMusicController {
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     const { playlistId, playlistMusicId } = httpRequest.body
 
-    try {
-      const result = await this.deletePlaylistMusicUseCase.execute(playlistId, playlistMusicId)
+    const data: DeletePlaylistMusicParams = {
+      playlistId,
+      playlistMusicId
+    }
 
-      return ok(result)
+    try {
+      await this.deletePlaylistMusicUseCase.execute(data)
+
+      return noContent()
     } catch (error) {
       return serverError(error)
     }

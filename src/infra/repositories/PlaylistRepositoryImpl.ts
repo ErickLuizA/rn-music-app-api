@@ -1,15 +1,28 @@
 import { IPlaylistRepository } from '../../data/repositories/IPlaylistRepository'
 import { MusicModel } from '../../domain/models/Music'
 import { PlaylistModel } from '../../domain/models/Playlist'
+import { CreatePlaylistMusicParams } from '../../domain/useCases/Playlists/CreatePlaylistMusicUseCase'
+import { CreatePlaylistParams } from '../../domain/useCases/Playlists/CreatePlaylistUseCase'
+import { DeletePlaylistMusicParams } from '../../domain/useCases/Playlists/DeletePlaylistMusicUseCase'
+import { DeletePlaylistParams } from '../../domain/useCases/Playlists/DeletePlaylistUseCase'
+import { UpdatePlaylistParams } from '../../domain/useCases/Playlists/UpdatePlaylistUseCase'
 import database from '../query-builder/knex/connection'
 
 export class PlaylistRepositoryImpl implements IPlaylistRepository {
-  async create (userId: string, title: string): Promise<PlaylistModel> {
-    return await database('playlist').insert({ userId, title }).returning('*') as any
+  async create (createPlaylistParams: CreatePlaylistParams): Promise<void> {
+    return await database('playlist').insert({
+      userId: createPlaylistParams.userId,
+      title: createPlaylistParams.title
+    })
   }
 
-  async createMusic (musicId: string, title: string, img: string, playlistId: string): Promise<MusicModel> {
-    return await database('playlist_music').insert({ musicId, title, img, playlistId }).returning('*') as any
+  async createMusic (createPlaylistMusicParams: CreatePlaylistMusicParams): Promise<void> {
+    return await database('playlist_music').insert({
+      musicId: createPlaylistMusicParams.musicId,
+      title: createPlaylistMusicParams.title,
+      img: createPlaylistMusicParams.img,
+      playlistId: createPlaylistMusicParams.playlistId
+    })
   }
 
   async load (userId: string, title: string): Promise<PlaylistModel> {
@@ -30,15 +43,22 @@ export class PlaylistRepositoryImpl implements IPlaylistRepository {
     return await database('playlist_music').where({ playlistId })
   }
 
-  async update (userId: string, playlistId: string, title: string): Promise<number | undefined> {
-    return await database('playlist').update({ title }).where({ userId, playlistId })
+  async update (updatePlaylistParams: UpdatePlaylistParams): Promise<void> {
+    await database('playlist').update({ title: updatePlaylistParams.title }).where({
+      userId: updatePlaylistParams.userId, playlistId: updatePlaylistParams.playlistId
+    })
   }
 
-  async delete (userId: string, playlistId: string): Promise<number> {
-    return await database('playlist').del().where({ userId, playlistId })
+  async delete (deletePlaylistParams: DeletePlaylistParams): Promise<void> {
+    await database('playlist').del().where({
+      userId: deletePlaylistParams.userId, playlistId: deletePlaylistParams.playlistId
+    })
   }
 
-  async deleteMusic (playlistId: string, playlistMusicId: string): Promise<number> {
-    return await database('playlist_music').del().where({ playlistId, playlistMusicId })
+  async deleteMusic (deletePlaylistMusicParams: DeletePlaylistMusicParams): Promise<void> {
+    await database('playlist_music').del().where({
+      playlistId: deletePlaylistMusicParams.playlistId,
+      playlistMusicId: deletePlaylistMusicParams.playlistMusicId
+    })
   }
 }

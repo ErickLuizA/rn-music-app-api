@@ -1,3 +1,8 @@
+export interface DeletePlaylistParams {
+  userId: string
+  playlistId: string
+}
+
 export interface DeletePlaylistUseCase {
-  execute: (userId: string, playlistId: string) => Promise<number>
+  execute: (deletePlaylistParams: DeletePlaylistParams) => Promise<void>
 }

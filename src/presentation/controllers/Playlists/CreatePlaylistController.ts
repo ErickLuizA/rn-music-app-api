@@ -1,5 +1,5 @@
-import { CreatePlaylistUseCase } from '../../../domain/useCases/Playlists/CreatePlaylistUseCase'
-import { ok, serverError } from '../../helpers/http-helper'
+import { CreatePlaylistParams, CreatePlaylistUseCase } from '../../../domain/useCases/Playlists/CreatePlaylistUseCase'
+import { noContent, serverError } from '../../helpers/http-helper'
 import { HttpRequest, HttpResponse } from '../../protocols/http'
 
 export class CreatePlaylistController {
@@ -11,12 +11,12 @@ export class CreatePlaylistController {
     const userId = httpRequest.userId
     const { title } = httpRequest.body
 
-    const data = { userId: userId ?? '', title }
+    const data: CreatePlaylistParams = { userId: userId ?? '', title }
 
     try {
-      const result = await this.createPlaylistUseCase.execute(data)
+      await this.createPlaylistUseCase.execute(data)
 
-      return ok(result)
+      return noContent()
     } catch (error) {
       return serverError(error)
     }

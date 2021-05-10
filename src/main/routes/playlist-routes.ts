@@ -10,13 +10,13 @@ import { makeLoadPlaylistsControllerFactory } from '../factories/controllers/Pla
 import { makeUpdatePlaylistControllerFactory } from '../factories/controllers/Playlist/UpdatePlaylistControllerFactory'
 
 export default (router: Router): void => {
-  router.get('/playlists', auth, adaptRoute(makeLoadPlaylistsControllerFactory()))
-  router.post('/playlist', auth, adaptRoute(makeCreatePlaylistControllerFactory()))
-  router.patch('/playlist', auth, adaptRoute(makeUpdatePlaylistControllerFactory()))
-  router.delete('/playlist/:id', auth, adaptRoute(makeDeletePlaylistControllerFactory()))
+  router.get('/playlists', auth, adaptRoute(makeLoadPlaylistsControllerFactory())) // eslint-disable-line
+  router.post('/playlist', auth, adaptRoute(makeCreatePlaylistControllerFactory())) // eslint-disable-line
+  router.patch('/playlist', auth, adaptRoute(makeUpdatePlaylistControllerFactory())) // eslint-disable-line
+  router.delete('/playlist/:id', auth, adaptRoute(makeDeletePlaylistControllerFactory())) // eslint-disable-line
 
-  router.post('/playlist_music', auth, adaptRoute(makeCreatePlaylistMusicControllerFactory()))
-  router.get('/playlist_musics/:id', auth, adaptRoute(makeLoadPlaylistControllerFactory()))
-  router.delete('/playlist_music', auth, adaptRoute(makeDeletePlaylistMusicControllerFactory())
+  router.post('/playlist_music', auth, adaptRoute(makeCreatePlaylistMusicControllerFactory())) // eslint-disable-line
+  router.get('/playlist_musics/:id', auth, adaptRoute(makeLoadPlaylistControllerFactory())) // eslint-disable-line
+  router.delete('/playlist_music', auth, adaptRoute(makeDeletePlaylistMusicControllerFactory()) // eslint-disable-line
   )
 }

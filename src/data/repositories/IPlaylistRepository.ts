@@ -1,10 +1,15 @@
 import { MusicModel } from '../../domain/models/Music'
 import { PlaylistModel } from '../../domain/models/Playlist'
+import { CreatePlaylistMusicParams } from '../../domain/useCases/Playlists/CreatePlaylistMusicUseCase'
+import { CreatePlaylistParams } from '../../domain/useCases/Playlists/CreatePlaylistUseCase'
+import { DeletePlaylistMusicParams } from '../../domain/useCases/Playlists/DeletePlaylistMusicUseCase'
+import { DeletePlaylistParams } from '../../domain/useCases/Playlists/DeletePlaylistUseCase'
+import { UpdatePlaylistParams } from '../../domain/useCases/Playlists/UpdatePlaylistUseCase'
 
 export interface IPlaylistRepository {
-  create: (userId: string, title: string) => Promise<PlaylistModel>
+  create: (createPlaylistParams: CreatePlaylistParams) => Promise<void>
 
-  createMusic: (musicId: string, title: string, img: string, playlistId: string) => Promise<MusicModel>
+  createMusic: (createPlaylistMusicParams: CreatePlaylistMusicParams) => Promise<void>
 
   load: (userId: string, title: string) => Promise<PlaylistModel>
 
@@ -14,10 +19,10 @@ export interface IPlaylistRepository {
 
   loadMusics: (playlistId: string) => Promise<MusicModel[]>
 
-  update: (userId: string, playlistId: string, title: string) => Promise<number | undefined>
+  update: (updatePlaylistParams: UpdatePlaylistParams) => Promise<void>
 
-  delete: (userId: string, playlistId: string) => Promise<number>
+  delete: (deletePlaylistParams: DeletePlaylistParams) => Promise<void>
 
-  deleteMusic: (playlistId: string, musicId: string) => Promise<number>
+  deleteMusic: (deletePlaylistMusicParams: DeletePlaylistMusicParams) => Promise<void>
 
 }

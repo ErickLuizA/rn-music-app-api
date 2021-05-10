@@ -1,4 +1,4 @@
-import { DeletePlaylistMusicUseCase } from '../../../domain/useCases/Playlists/DeletePlaylistMusicUseCase'
+import { DeletePlaylistMusicParams, DeletePlaylistMusicUseCase } from '../../../domain/useCases/Playlists/DeletePlaylistMusicUseCase'
 import { IPlaylistRepository } from '../../repositories/IPlaylistRepository'
 
 export class DeletePlaylistMusicUseCaseImpl implements DeletePlaylistMusicUseCase {
@@ -6,7 +6,7 @@ export class DeletePlaylistMusicUseCaseImpl implements DeletePlaylistMusicUseCas
     private readonly playlistRepository: IPlaylistRepository
   ) {}
 
-  async execute (playlistId: string, playlistMusicId: string): Promise<number> {
-    return await this.playlistRepository.deleteMusic(playlistId, playlistMusicId)
+  async execute (deletePlaylistMusicParams: DeletePlaylistMusicParams): Promise<void> {
+    return await this.playlistRepository.deleteMusic(deletePlaylistMusicParams)
   }
 }

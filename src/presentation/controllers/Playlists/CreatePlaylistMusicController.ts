@@ -1,5 +1,5 @@
-import { CreatePlaylistMusicUseCase } from '../../../domain/useCases/Playlists/CreatePlaylistMusicUseCase'
-import { ok, serverError } from '../../helpers/http-helper'
+import { CreatePlaylistMusicParams, CreatePlaylistMusicUseCase } from '../../../domain/useCases/Playlists/CreatePlaylistMusicUseCase'
+import { noContent, serverError } from '../../helpers/http-helper'
 import { HttpRequest, HttpResponse } from '../../protocols/http'
 
 export class CreatePlaylistMusicController {
@@ -10,10 +10,17 @@ export class CreatePlaylistMusicController {
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     const { musicId, title, img, playlistId } = httpRequest.body
 
-    try {
-      const result = await this.createPlaylistMusicUseCase.execute(musicId, title, img, playlistId)
+    const data: CreatePlaylistMusicParams = {
+      musicId,
+      title,
+      img,
+      playlistId
+    }
 
-      return ok(result)
+    try {
+      await this.createPlaylistMusicUseCase.execute(data)
+
+      return noContent()
     } catch (error) {
       return serverError(error)
     }
