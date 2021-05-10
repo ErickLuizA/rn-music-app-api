@@ -2,7 +2,7 @@ import { UserModel } from '../../domain/models/User'
 import { CreateUserParams } from '../../domain/useCases/User/CreateUserUseCase'
 
 export interface IUserRepository {
-  create: (params: CreateUserParams) => Promise<number>
+  create: (params: CreateUserParams) => Promise<void>
 
   loadByEmail: (email: string) => Promise<UserModel>
 

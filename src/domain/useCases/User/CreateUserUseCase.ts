@@ -5,5 +5,5 @@ export interface CreateUserParams {
 }
 
 export interface CreateUserUseCase {
-  execute: (user: CreateUserParams) => Promise<number>
+  execute: (user: CreateUserParams) => Promise<void>
 }

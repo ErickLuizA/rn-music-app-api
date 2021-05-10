@@ -1,5 +1,3 @@
-import { Encrypter } from '../../../data/criptography/encrypter'
-import { IUserRepository } from '../../../data/repositories/IUserRepository'
 import { CreateUserParams, CreateUserUseCase } from '../../../domain/useCases/User/CreateUserUseCase'
 import {
   badRequest,
@@ -13,9 +11,7 @@ import { Validation } from '../../protocols/validation'
 export class CreateUserController {
   constructor (
     private readonly createUserUseCase: CreateUserUseCase,
-    private readonly validator: Validation,
-    private readonly encrypter: Encrypter,
-    private readonly userRepository: IUserRepository
+    private readonly validator: Validation
   ) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
@@ -33,11 +29,7 @@ export class CreateUserController {
     }
 
     try {
-      const userId = await this.createUserUseCase.execute(data)
-
-      const token = await this.encrypter.encrypt(userId.toString())
-
-      await this.userRepository.updateToken(userId.toString(), token)
+      await this.createUserUseCase.execute(data)
 
       return noContent()
     } catch (error) {
