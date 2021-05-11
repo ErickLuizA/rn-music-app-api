@@ -7,10 +7,6 @@ export class DeleteFavoriteUseCaseImpl implements DeleteFavoriteUseCase {
   ) {}
 
   async execute (favoriteId: string, userId: string): Promise<void> {
-    const result = await this.favoriteRepository.delete(favoriteId, userId)
-
-    if (result !== 1) {
-      throw new Error('Favorite does not exist')
-    }
+    return await this.favoriteRepository.delete(favoriteId, userId)
   }
 }
