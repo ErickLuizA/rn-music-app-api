@@ -2,9 +2,8 @@ import * as Knex from 'knex'
 
 export async function up (knex: Knex.Knex): Promise<void> {
   return await knex.schema.createTable('favorites', (table) => {
-    table.increments('favoriteId').primary()
+    table.string('favoriteId').primary()
 
-    table.string('musicId')
     table.string('title')
     table.string('img')
 

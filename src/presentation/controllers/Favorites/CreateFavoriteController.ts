@@ -9,11 +9,11 @@ export class CreateFavoriteController {
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     const userId = httpRequest.userId
-    const { musicId, title, img } = httpRequest.body
+    const { favoriteId, title, img } = httpRequest.body
 
     const data: CreateFavoriteParams = {
       userId: userId ?? '',
-      musicId,
+      favoriteId,
       title,
       img
     }

@@ -1,6 +1,6 @@
 export interface DeletePlaylistMusicParams {
   playlistId: string
-  playlistMusicId: string
+  musicId: string
 }
 
 export interface DeletePlaylistMusicUseCase {

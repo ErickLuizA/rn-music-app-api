@@ -17,12 +17,7 @@ export class PlaylistRepositoryImpl implements IPlaylistRepository {
   }
 
   async createMusic (createPlaylistMusicParams: CreatePlaylistMusicParams): Promise<void> {
-    return await database('playlist_music').insert({
-      musicId: createPlaylistMusicParams.musicId,
-      title: createPlaylistMusicParams.title,
-      img: createPlaylistMusicParams.img,
-      playlistId: createPlaylistMusicParams.playlistId
-    })
+    return await database('playlist_music').insert(createPlaylistMusicParams)
   }
 
   async load (userId: string, title: string): Promise<PlaylistModel> {
@@ -34,8 +29,6 @@ export class PlaylistRepositoryImpl implements IPlaylistRepository {
   }
 
   async loadMusic (playlistId: string, musicId: string): Promise<MusicModel> {
-    console.log(playlistId, musicId)
-
     return await database('playlist_music').where({ playlistId, musicId }).first()
   }
 
@@ -58,7 +51,7 @@ export class PlaylistRepositoryImpl implements IPlaylistRepository {
   async deleteMusic (deletePlaylistMusicParams: DeletePlaylistMusicParams): Promise<void> {
     await database('playlist_music').del().where({
       playlistId: deletePlaylistMusicParams.playlistId,
-      playlistMusicId: deletePlaylistMusicParams.playlistMusicId
+      musicId: deletePlaylistMusicParams.musicId
     })
   }
 }

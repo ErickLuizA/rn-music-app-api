@@ -8,11 +8,11 @@ export class DeletePlaylistMusicController {
   ) {}
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
-    const { playlistId, playlistMusicId } = httpRequest.body
+    const { playlistId, musicId } = httpRequest.body
 
     const data: DeletePlaylistMusicParams = {
       playlistId,
-      playlistMusicId
+      musicId
     }
 
     try {
