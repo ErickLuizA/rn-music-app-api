@@ -8,8 +8,8 @@ export class FavoriteRepositoryImpl implements IFavoriteRepository {
     return await database('favorites').insert(createFavoriteParams)
   }
 
-  async load (userId: string, musicId: string): Promise<FavoriteMusicModel> {
-    return await database('favorites').where({ userId, musicId }).first()
+  async load (userId: string, favoriteId: string): Promise<FavoriteMusicModel> {
+    return await database('favorites').where({ userId, favoriteId }).first()
   }
 
   async loadAll (userId: string): Promise<FavoriteMusicModel[]> {

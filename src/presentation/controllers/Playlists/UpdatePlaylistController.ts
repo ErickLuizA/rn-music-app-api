@@ -7,7 +7,7 @@ export class UpdatePlaylistController {
 
   async handle (httpRequest: HttpRequest): Promise<HttpResponse> {
     const userId = httpRequest.userId
-    const { playlistId, title } = httpRequest.body
+    const { data: { playlistId, title } } = httpRequest.body
 
     const data: UpdatePlaylistParams = { userId: userId ?? '', playlistId, title }
 
