@@ -1,7 +1,7 @@
-<h1 align="center"> yfmusic-api </h1>
+<h1 align="center"> rn-music-app-api </h1>
 
 <p align="center">
-  <a href="https://github.com/ErickLuizA/yfmusic-api/graphs/commit-activity" alt="Maintenance">
+  <a href="https://github.com/ErickLuizA/rn-music-app-api/graphs/commit-activity" alt="Maintenance">
     <img src="https://img.shields.io/badge/Maintained%3F-yes-1EAE72.svg" />
   </a>
 
@@ -11,12 +11,12 @@
 
 <br/>
 
-<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/ErickLuizA/yfmusic-api?color=blue">
+<img alt="GitHub language count" src="https://img.shields.io/github/languages/count/ErickLuizA/rn-music-app-api?color=blue">
 
-<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/ErickLuizA/yfmusic-api">
+<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/ErickLuizA/rn-music-app-api">
 
-<a href="https://github.com/ErickLuizA/yfmusic-api/stargazers">
-  <img alt="GitHub stars" src="https://img.shields.io/github/stars/ErickLuizA/yfmusic-api?style=social">
+<a href="https://github.com/ErickLuizA/rn-music-app-api/stargazers">
+  <img alt="GitHub stars" src="https://img.shields.io/github/stars/ErickLuizA/rn-music-app-api?style=social">
 </a>
 
 <p align="center">
@@ -28,7 +28,7 @@
 
 ## :clipboard: Description
 
-yfmusic-api is the api for the [yfmusic app](https://github.com/ErickLuizA/yfmusic)
+rn-music-app-api is the api for the [rn-music-app app](https://github.com/ErickLuizA/rn-music-app)
 
 ## :building_construction: Technologies
 
@@ -42,20 +42,19 @@ yfmusic-api is the api for the [yfmusic app](https://github.com/ErickLuizA/yfmus
   - [Jsonwebtoken](https://jwt.io/)
   - [ytdl-core](https://github.com/fent/node-ytdl-core)
 
-
 ## :rocket: Getting Started
 
 ## 1. Download the repository
 
 ```shell
- $ git clone https://github.com/ErickLuizA/yfmusic-api.git
+ $ git clone https://github.com/ErickLuizA/rn-music-app-api.git
 ```
 
 ## 2. Installation
 
 ```shell
 # Go into the repository
-$ cd yfmusic-api
+$ cd rn-music-app-api
 
 # Install dependencies
 $ yarn install
